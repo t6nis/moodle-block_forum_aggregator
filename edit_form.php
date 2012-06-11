@@ -1,4 +1,3 @@
-
 <?php
 // This file is part of Moodle - http://moodle.org/
 //
@@ -15,10 +14,11 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 /*
- * Forum Aggregator
- * 29.11.2011 by T6nis
- * Allows teacher to choose between different forums to show in block.
- * Can add custom title and select how many latest posts to be shown.
+ * @package    block
+ * @subpackage forum_aggregator
+ * @author     Tõnis Tartes <t6nis20@gmail.com>
+ * @copyright  1999 onwards Martin Dougiamas  {@link http://moodle.com}
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 class block_forum_aggregator_edit_form extends block_edit_form {
