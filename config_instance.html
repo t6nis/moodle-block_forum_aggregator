@@ -1,8 +1,8 @@
-<?php include_once($CFG->dirroot.'/blocks/forum_block/lib.php'); ?>
+<?php include_once($CFG->dirroot.'/blocks/forum_aggregator/lib.php'); ?>
 <table cellpadding="9" cellspacing="0" align="center">
     <tr valign="top">
         <td align="right">
-            <?php print_string('configtitle', 'block_forum_block'); ?>:
+            <?php print_string('configtitle', 'block_forum_aggregator'); ?>:
         </td>
         <td>
             <input type="text" name="title" size="30" value="<?= (empty($this->config->title) ? '' : $this->config->title) ?>" />
@@ -13,8 +13,8 @@
             <table cellpadding="2" cellspacing="2" valign="top" border="1" class="forums">
                 <tr class="header">
                     <td align="center">#</td>
-                    <td><?php echo get_string('selectforums', 'block_forum_block'); ?></td>
-                    <td align="center"><?php echo get_string('posts', 'block_forum_block'); helpbutton('maxposts',get_string('maxposts','block_forum_block'),'block_forum_block'); ?></td>
+                    <td><?php echo get_string('selectforums', 'block_forum_aggregator'); ?></td>
+                    <td align="center"><?php echo get_string('posts', 'block_forum_aggregator'); helpbutton('maxposts',get_string('maxposts','block_forum_aggregator'),'block_forum_aggregator'); ?></td>
                 </tr>
                 <?php
                     $data = get_course_forums();

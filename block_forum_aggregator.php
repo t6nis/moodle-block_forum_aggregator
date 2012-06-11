@@ -5,11 +5,11 @@
  * Allows teacher to choose between different forums to show in block.
  * Can add custom title and select how many latest posts to be shown.
  */
-class block_forum_block extends block_base {
+class block_forum_aggregator extends block_base {
 
     function init() {
 
-        $this->title = get_string('blocktitle', 'block_forum_block');
+        $this->title = get_string('blocktitle', 'block_forum_aggregator');
         $this->version = 2007101509;
         
     }
@@ -34,7 +34,7 @@ class block_forum_block extends block_base {
 
         //Include needed libraries
         require_once($CFG->dirroot.'/mod/forum/lib.php'); 
-        require_once($CFG->dirroot.'/blocks/forum_block/lib.php');
+        require_once($CFG->dirroot.'/blocks/forum_aggregator/lib.php');
 
         $this->content = new stdClass;
         $this->content->text = '';
@@ -90,7 +90,7 @@ class block_forum_block extends block_base {
 
                             }
                         } else {
-                            $text .= '<li class="no_posts">('.get_string('noposts', 'block_forum_block').')</li>';
+                            $text .= '<li class="no_posts">('.get_string('noposts', 'block_forum_aggregator').')</li>';
                         }
                         $text .= "</ul>\n";
                     }
