@@ -1,0 +1,47 @@
+<?php include_once($CFG->dirroot.'/blocks/forum_block/lib.php'); ?>
+<table cellpadding="9" cellspacing="0" align="center">
+    <tr valign="top">
+        <td align="right">
+            <?php print_string('configtitle', 'block_forum_block'); ?>:
+        </td>
+        <td>
+            <input type="text" name="title" size="30" value="<?= (empty($this->config->title) ? '' : $this->config->title) ?>" />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <table cellpadding="2" cellspacing="2" valign="top" border="1" class="forums">
+                <tr class="header">
+                    <td align="center">#</td>
+                    <td><?php echo get_string('selectforums', 'block_forum_block'); ?></td>
+                    <td align="center"><?php echo get_string('posts', 'block_forum_block'); helpbutton('maxposts',get_string('maxposts','block_forum_block'),'block_forum_block'); ?></td>
+                </tr>
+                <?php
+                    $data = get_course_forums();
+                    if (!empty($data)) {
+                        foreach (get_course_forums() as $key => $value) {
+                            echo '<tr><td valign="top">';
+                            echo '<input type="checkbox" name="forum_id[]" value="'.$value->id.'" '.(isset($this->config->forum_id) && in_array($value->id, $this->config->forum_id) ? 'checked' : '').'>';
+                            echo '</td>';
+                            echo '<td>';
+                            echo wordwrap($value->name, 50, '<br />', true);
+                            echo '</td>';
+                            echo '<td valign="top">';
+                            echo '<select name="max_posts['.$value->id.']">';
+                            for ($i = 0; $i <= 25; $i++ ) {
+                                echo '<option value="'.$i.'" '.($this->config->max_posts[$value->id] == $i ? 'selected' : '').'>'.$i.'</option>';
+                            }
+                            echo '</select>';
+                            echo '</td></tr>';
+                        }
+                    }
+                ?>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">
+          <input type="submit" value="<?php print_string('savechanges') ?>" />
+        </td>
+    </tr>
+</table>
