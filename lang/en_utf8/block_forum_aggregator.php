@@ -1,5 +1,5 @@
 <?php
-$string['blocktitle'] = 'Forum Aggregator';
+$string['blocktitle'] = 'Forum aggregator';
 $string['configtitle'] = 'Block title';
 $string['noposts'] = 'No posts';
 $string['selectforums'] = 'Forums';
