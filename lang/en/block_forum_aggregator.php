@@ -21,9 +21,9 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['pluginname'] = 'Forum Aggregator';
-$string['forum_aggregator'] = 'Forum Aggregator';
-$string['blocktitle'] = 'Forum Aggregator';
+$string['pluginname'] = 'Forum aggregator';
+$string['forum_aggregator'] = 'Forum aggregator';
+$string['blocktitle'] = 'Forum aggregator';
 
 $string['configtitle'] = 'Block title';
 $string['forum_selection'] = 'Forum selection';
