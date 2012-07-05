@@ -10,7 +10,7 @@ class block_forum_aggregator extends block_base {
     function init() {
 
         $this->title = get_string('blocktitle', 'block_forum_aggregator');
-        $this->version = 2007101509;
+        $this->version = 2012070400;
         
     }
     
