@@ -63,7 +63,7 @@ class block_forum_aggregator extends block_base {
         if (!empty($this->config->forum_id)) {
 
             foreach ($this->config->forum_id as $key => $value) {
-                    
+
                     //if forum not been made available
                     if ($value == 0) {
                         continue;
@@ -73,11 +73,17 @@ class block_forum_aggregator extends block_base {
                         //maybe someone deleted a forum? then skip that value..
                         continue;
                     }
+                    
+                    $max_posts = '';
                     //if post in array get the maxpost value
-                    if (array_key_exists($value, $this->config->max_posts)) {
-                        $max_posts = $this->config->max_posts[$key];
+                    if (array_key_exists($key, $this->config->max_posts)) {
+                        if ($this->config->max_posts[$key] > 0) {
+                            $max_posts = $this->config->max_posts[$key];
+                        } else {
+                            continue;
+                        }
                     }
-
+                    
                     $cm = $modinfo->instances['forum'][$key];
 
                     $context = get_context_instance(CONTEXT_MODULE, $cm->id);
