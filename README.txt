@@ -10,6 +10,7 @@ This block is an alternative for Recent News block which is tied to News Forum.
     Can select number of latest posts to be shown(max 25)
 
 This block makes no DB changes!
+//19.10.2012 - Fixed a bug, related to showing different count of posts. Thank you Thomas Bantle!
 
 //04.07.2012 - Minor lang fixes
 
