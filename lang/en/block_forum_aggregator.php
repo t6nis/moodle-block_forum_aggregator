@@ -30,6 +30,7 @@ $string['forum_selection'] = 'Forum selection';
 $string['noposts'] = 'No posts';
 
 $string['posts'] = 'Posts';
+$string['posted'] = 'Posted: ';
 
 //Help strings
 $string['max_num_of_posts'] = 'Maximum number of posts';

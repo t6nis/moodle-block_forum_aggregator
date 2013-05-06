@@ -47,7 +47,7 @@ class block_forum_aggregator extends block_base {
     
     public function get_content() {
         
-        global $DB, $CFG, $USER, $COURSE;
+        global $DB, $CFG, $USER, $COURSE, $OUTPUT;
 
         //Include needed libraries
         require_once($CFG->dirroot.'/mod/forum/lib.php'); 
@@ -97,20 +97,22 @@ class block_forum_aggregator extends block_base {
                         //show list
                         $text .= "\n<ul class='unlist'>\n";
                         $text .= '<li class="forum_title">'.$cm->name.'</li>';
-                        if ( $discussions = forum_get_discussions($cm, 'p.modified DESC', false, -1, $max_posts ) ) {
+                        if ( $discussions = forum_get_discussions($cm, 'p.modified DESC', true, -1, $max_posts ) ) {
              
                             foreach ($discussions as $discussion) {
 
-                                $discussion->subject = $discussion->name;
-
-                                $discussion->subject = format_string($discussion->subject, true, $COURSE->id);
-
+                                $discussion->message = format_string($discussion->message, true, $COURSE->id);                        
+                                $discussion->message = shorten_text($discussion->message, 80, true, '');
+                                
+                                $user = $DB->get_record('user', array('id'=>$discussion->userid), '*', MUST_EXIST);
+                                
                                 $text .= '<li class="post">'.
                                          '<div class="head">'.
-                                         '<div class="date">'.userdate($discussion->modified, $strftimerecent).'</div>'.
-                                         '<div class="name">'.fullname($discussion).'</div></div>'.
-                                         '<div>'.$discussion->subject.' '.
-                                         '<a href="'.$CFG->wwwroot.'/mod/forum/discuss.php?d='.$discussion->discussion.'">'.
+                                         '<div class="userpic">'.$OUTPUT->user_picture($user, array('size'=>21, 'class'=>'userpostpic')).'</div>'.                                        
+                                         '<div class="name">'.fullname($discussion).'</div>'.
+                                         '<div class="date">'.get_string('posted', 'block_forum_aggregator').userdate($discussion->modified, $strftimerecent).'</div></div>'.
+                                         '<div>'.$discussion->message.' '.
+                                         '<a href="'.$CFG->wwwroot.'/mod/forum/discuss.php?d='.$discussion->discussion.'" class="postreadmore">'.
                                          $strmore.'...</a></div>'.
                                          "</li>\n";
 
