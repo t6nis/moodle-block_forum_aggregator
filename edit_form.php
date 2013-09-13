@@ -16,7 +16,7 @@
 /*
  * @package    block
  * @subpackage forum_aggregator
- * @author     TÃµnis Tartes <t6nis20@gmail.com>
+ * @author     Tõnis Tartes <t6nis20@gmail.com>
  * @copyright  1999 onwards Martin Dougiamas  {@link http://moodle.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -30,7 +30,8 @@ class block_forum_aggregator_edit_form extends block_edit_form {
         
         
         $mform->addElement('text', 'config_title', get_string('configtitle', 'block_forum_aggregator'));
-
+        $mform->setType('config_title', PARAM_TEXT);
+        
         $forums = $this->get_course_forums();
         
         if (!empty($forums)) {
@@ -43,8 +44,11 @@ class block_forum_aggregator_edit_form extends block_edit_form {
                 $mform->addElement('advcheckbox', 'config_forum_id['.$value->id.']',  get_string('forum_selection', 'block_forum_aggregator'), '', array('group' => 1), array(0,1));
                 $mform->addHelpButton('config_forum_id['.$value->id.']', 'forum_selection', 'block_forum_aggregator');
                 
-                $forum_description_html = '<div class="fitem"><div class="fitemtitle">Forum desription</div><div class="felement fitemdescription">'.$value->intro.'</div></div>';
-
+                $forum_description_html = html_writer::start_tag('div', array('class' => 'fitem')).
+                                          html_writer::tag('div', get_string('forum_description', 'block_forum_aggregator'), array('class' => 'fitemtitle')).
+                                          html_writer::tag('div', $value->intro, array('class' => 'felement fitemdescription')).
+                                          html_writer::end_tag('div');
+                
                 $mform->addElement('html', $forum_description_html);
                 
                 $post_array = array();

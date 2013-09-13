@@ -16,7 +16,7 @@
 /*
  * @package    block
  * @subpackage forum_aggregator
- * @author     TÃµnis Tartes <t6nis20@gmail.com>
+ * @author     Tõnis Tartes <t6nis20@gmail.com>
  * @copyright  1999 onwards Martin Dougiamas  {@link http://moodle.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -31,6 +31,7 @@ $string['noposts'] = 'No posts';
 
 $string['posts'] = 'Posts';
 $string['posted'] = 'Posted: ';
+$string['forum_description'] = 'Forum description';
 
 //Help strings
 $string['max_num_of_posts'] = 'Maximum number of posts';

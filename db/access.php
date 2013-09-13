@@ -17,7 +17,7 @@
 /**
  *
  * @package    block_forum_aggregator
- * @copyright  TÃµnis Tartes <tonis.tartes@gmail.com>
+ * @copyright  Tõnis Tartes <tonis.tartes@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -37,4 +37,18 @@ $capabilities = array(
 
         'clonepermissionsfrom' => 'moodle/site:manageblocks'
     ),
+    
+    'block/forum_aggregator:myaddinstance' => array(
+        'riskbitmask' => RISK_SPAM | RISK_XSS,
+
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_BLOCK,
+        'archetypes' => array(
+            'editingteacher' => CAP_PROHIBIT,
+            'manager' => CAP_PROHIBIT
+        ),
+
+        'clonepermissionsfrom' => 'moodle/site:manageblocks'
+    ),
+    
 );

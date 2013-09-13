@@ -1,4 +1,4 @@
-Forum Aggregator by TÃµnis Tartes 2011
+Forum Aggregator by Tõnis Tartes 2011
 
 This works for Moodle 2.x version.
 
@@ -10,6 +10,9 @@ This block is an alternative for Recent News block which is tied to News Forum.
     Can select number of latest posts to be shown(max 25)
 
 This block makes no DB changes!
+//09.13.2013 - Refactored code and now showing the latest posts foreach selected forum. 
+Before it showed the latest discussions(first posts) only. 
+
 //06.05.2013 - Changed the view of posts in block
 
 //19.10.2012 - Fixed a bug, related to showing different count of posts. Thank you Thomas Bantle!

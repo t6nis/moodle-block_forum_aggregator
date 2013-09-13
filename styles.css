@@ -25,6 +25,9 @@
     font-size:10px;
     font-style:italic;
 }
+.block_forum_aggregator .post div.head .subject {
+    font-weight:bold;
+}
 .block_forum_aggregator .no_posts {
     text-align:center;
     font-style:italic;

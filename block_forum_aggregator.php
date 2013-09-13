@@ -16,7 +16,7 @@
 /*
  * @package    block
  * @subpackage forum_aggregator
- * @author     TÃµnis Tartes <t6nis20@gmail.com>
+ * @author     Tõnis Tartes <t6nis20@gmail.com>
  * @copyright  1999 onwards Martin Dougiamas  {@link http://moodle.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -94,33 +94,43 @@ class block_forum_aggregator extends block_base {
                     //if visible
                     if ($cm->visible == 1) {
                         
-                        //show list
-                        $text .= "\n<ul class='unlist'>\n";
-                        $text .= '<li class="forum_title">'.$cm->name.'</li>';
-                        if ( $discussions = forum_get_discussions($cm, 'p.modified DESC', true, -1, $max_posts ) ) {
-             
-                            foreach ($discussions as $discussion) {
+                        //show list                        
+                        $text .= html_writer::start_tag('ul', array('class'=> 'unlist'));
+                        $text .= html_writer::tag('li', html_writer::link(new moodle_url('/mod/forum/view.php?id='.$cm->id), $cm->name), array('class' => 'forum_title'));
+                        
+                        $posts = $DB->get_records_sql('SELECT d.id, p.*, u.firstname, u.lastname, u.email, u.picture, u.imagealt
+                                            FROM {forum_discussions} d
+                                            LEFT JOIN {forum_posts} p ON p.discussion = d.id
+                                            LEFT JOIN {user} u ON p.userid = u.id
+                                            WHERE d.forum = "'.$key.'"
+                                            ORDER BY p.modified DESC LIMIT 0, '.$max_posts.'');
+                        
+                        if (!empty($posts)) {
 
-                                $discussion->message = format_string($discussion->message, true, $COURSE->id);                        
-                                $discussion->message = shorten_text($discussion->message, 80, true, '');
-                                
-                                $user = $DB->get_record('user', array('id'=>$discussion->userid), '*', MUST_EXIST);
-                                
-                                $text .= '<li class="post">'.
-                                         '<div class="head">'.
-                                         '<div class="userpic">'.$OUTPUT->user_picture($user, array('size'=>21, 'class'=>'userpostpic')).'</div>'.                                        
-                                         '<div class="name">'.fullname($discussion).'</div>'.
-                                         '<div class="date">'.get_string('posted', 'block_forum_aggregator').userdate($discussion->modified, $strftimerecent).'</div></div>'.
-                                         '<div>'.$discussion->message.' '.
-                                         '<a href="'.$CFG->wwwroot.'/mod/forum/discuss.php?d='.$discussion->discussion.'" class="postreadmore">'.
-                                         $strmore.'...</a></div>'.
-                                         "</li>\n";
+                            foreach ($posts as $post) {
 
+                                $post->message = format_string($post->message, true, $COURSE->id);                        
+                                $post->message = shorten_text($post->message, 80, true, '');
+
+                                $user = $DB->get_record('user', array('id'=>$post->userid), '*', MUST_EXIST);
+                                
+                                $text .= html_writer::start_tag('li', array('class' => 'post')).
+                                         html_writer::start_tag('div', array('class' => 'head')).
+                                         html_writer::tag('div', $post->subject, array('class' => 'subject')).
+                                         html_writer::tag('div', $OUTPUT->user_picture($user, array('size'=>21, 'class'=>'userpostpic')), array('class' => 'userpic')).
+                                         html_writer::tag('div', fullname($post), array('class' => 'name')).
+                                         html_writer::tag('div', get_string('posted', 'block_forum_aggregator').userdate($post->modified, $strftimerecent), array('class' => 'date')).
+                                         html_writer::end_tag('div').
+                                         html_writer::start_tag('div').
+                                         $post->message.' '.
+                                         html_writer::link(new moodle_url('/mod/forum/discuss.php?d='.$post->discussion.'#p'.$post->id), $strmore.'...' , array('class' => 'postreadmore')).
+                                         html_writer::end_tag('div').
+                                         html_writer::end_tag('li');
                             }
                         } else {
-                            $text .= '<li class="no_posts">('.get_string('noposts', 'block_forum_aggregator').')</li>';
+                            $text .= html_writer::tag('li', '('.get_string('noposts', 'block_forum_aggregator').')', array('class' => 'no_posts'));
                         }
-                        $text .= "</ul>\n";
+                        $text .= html_writer::end_tag('ul');
                     }
             }
             
