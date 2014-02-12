@@ -1,4 +1,4 @@
-Forum Aggregator by T�nis Tartes 2011
+Forum Aggregator by Tõnis Tartes since 2011
 
 This works for Moodle 2.x version.
 
