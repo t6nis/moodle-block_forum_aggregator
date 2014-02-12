@@ -11,6 +11,8 @@ This block is an alternative for Recent News block which is tied to News Forum.
 
 This block makes no DB changes!
 //12.02.2014 - Moodle 2.6 release(2014021200). Please note this version will not work below 2.6!!!
+If you want to use this block below Moodle 2.6 then please download from this branch:
+https://github.com/t6nis/moodle-block_forum_aggregator/tree/2013091300
 
 //09.13.2013 - Refactored code and now showing the latest posts foreach selected forum. 
 Before it showed the latest discussions(first posts) only. 
