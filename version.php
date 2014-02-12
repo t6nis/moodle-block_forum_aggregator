@@ -16,13 +16,13 @@
 /*
  * @package    block
  * @subpackage forum_aggregator
- * @author     Tõnis Tartes <t6nis20@gmail.com>
+ * @author     TÃµnis Tartes <t6nis20@gmail.com>
  * @copyright  1999 onwards Martin Dougiamas  {@link http://moodle.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$plugin->version = 2013091300;
-$plugin->requires = 2010112400;
+$plugin->version = 2014021200;
+$plugin->requires = 2013101800;
 
 $plugin->maturity  = MATURITY_STABLE;
-$plugin->release   = "2013091300"; // User-friendly version number
+$plugin->release   = "2014021200"; // User-friendly version number

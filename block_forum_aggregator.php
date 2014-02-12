@@ -16,7 +16,7 @@
 /*
  * @package    block
  * @subpackage forum_aggregator
- * @author     Tõnis Tartes <t6nis20@gmail.com>
+ * @author     TÃµnis Tartes <t6nis20@gmail.com>
  * @copyright  1999 onwards Martin Dougiamas  {@link http://moodle.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -86,7 +86,7 @@ class block_forum_aggregator extends block_base {
                     
                     $cm = $modinfo->instances['forum'][$key];
 
-                    $context = get_context_instance(CONTEXT_MODULE, $cm->id);
+                    $context = context_module::instance($cm->id);
 
                     $strftimerecent = get_string('strftimerecent');
                     $strmore = get_string('more', 'forum');
@@ -98,7 +98,8 @@ class block_forum_aggregator extends block_base {
                         $text .= html_writer::start_tag('ul', array('class'=> 'unlist'));
                         $text .= html_writer::tag('li', html_writer::link(new moodle_url('/mod/forum/view.php?id='.$cm->id), $cm->name), array('class' => 'forum_title'));
                         
-                        $posts = $DB->get_records_sql('SELECT d.id, p.*, u.firstname, u.lastname, u.email, u.picture, u.imagealt
+                        $allnames = get_all_user_name_fields(true, 'u');
+                        $posts = $DB->get_records_sql('SELECT d.id, p.*, '.$allnames.', u.email, u.picture, u.imagealt
                                             FROM {forum_discussions} d
                                             LEFT JOIN {forum_posts} p ON p.discussion = d.id
                                             LEFT JOIN {user} u ON p.userid = u.id

@@ -17,7 +17,7 @@
 /**
  *
  * @package    block_forum_aggregator
- * @copyright  Tõnis Tartes <tonis.tartes@gmail.com>
+ * @copyright  TÃµnis Tartes <tonis.tartes@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
