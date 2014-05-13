@@ -38,6 +38,7 @@ $string['max_num_of_posts'] = 'Maximum number of posts';
 $string['max_num_of_posts_help'] = 'Select maximum number of latest posts to be shown in block.';
 
 $string['forum_selection'] = 'Forum selection';
-$string['forum_selection_help'] = 'If you want to show posts from this specific forum, then you have to check this box.'
+$string['forum_selection_help'] = 'If you want to show posts from this specific forum, then you have to check this box.';
 
-?>
+$string['unread_post_color'] = 'Unread color';
+$string['unread_post_color_description'] = 'Define the color background of unread posts.';

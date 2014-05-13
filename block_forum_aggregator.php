@@ -36,6 +36,10 @@ class block_forum_aggregator extends block_base {
         }
 
     }
+
+    function has_config() {
+        return true;
+    }
     
     public function instance_allow_multiple() {
         return true;
@@ -94,6 +98,10 @@ class block_forum_aggregator extends block_base {
                     //if visible
                     if ($cm->visible == 1) {
                         
+                        if (! $forum = $DB->get_record("forum", array("id" => $key))) {
+                            print_error('invalidforumid', 'forum');
+                        }
+
                         //show list                        
                         $text .= html_writer::start_tag('ul', array('class'=> 'unlist'));
                         $text .= html_writer::tag('li', html_writer::link(new moodle_url('/mod/forum/view.php?id='.$cm->id), $cm->name), array('class' => 'forum_title'));
@@ -107,15 +115,22 @@ class block_forum_aggregator extends block_base {
                                             ORDER BY p.modified DESC LIMIT 0, '.$max_posts.'');
                         
                         if (!empty($posts)) {
-
+                            
                             foreach ($posts as $post) {
-
+                                
+                                $post_style = array('class' => 'post');
+                                if ($forum->trackingtype == FORUM_TRACKING_ON) {
+                                    if (!forum_tp_is_post_read($USER->id, $post)) {
+                                        $post_style = array('class' => 'post', 'style' => 'background-color: '.get_config('block_forum_aggregator', 'unread_post_color'));                                    
+                                    }
+                                }
+                                
                                 $post->message = format_string($post->message, true, $COURSE->id);                        
                                 $post->message = shorten_text($post->message, 80, true, '');
 
                                 $user = $DB->get_record('user', array('id'=>$post->userid), '*', MUST_EXIST);
                                 
-                                $text .= html_writer::start_tag('li', array('class' => 'post')).
+                                $text .= html_writer::start_tag('li', $post_style).
                                          html_writer::start_tag('div', array('class' => 'head')).
                                          html_writer::tag('div', $post->subject, array('class' => 'subject')).
                                          html_writer::tag('div', $OUTPUT->user_picture($user, array('size'=>21, 'class'=>'userpostpic')), array('class' => 'userpic')).
