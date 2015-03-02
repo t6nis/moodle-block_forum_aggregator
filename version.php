@@ -25,4 +25,4 @@ $plugin->version = 2015030200;
 $plugin->requires = 2013101800;
 $plugin->component = 'block_forum_aggregator';
 $plugin->maturity  = MATURITY_STABLE;
-$plugin->release   = "2014051300"; // User-friendly version number
+$plugin->release   = "2015030200"; // User-friendly version number
