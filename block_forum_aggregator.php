@@ -111,8 +111,8 @@ class block_forum_aggregator extends block_base {
                                             FROM {forum_discussions} d
                                             LEFT JOIN {forum_posts} p ON p.discussion = d.id
                                             LEFT JOIN {user} u ON p.userid = u.id
-                                            WHERE d.forum = "'.$key.'"
-                                            ORDER BY p.modified DESC LIMIT 0, '.$max_posts.'');
+                                            WHERE d.forum = \''.$key.'\'
+                                            ORDER BY p.modified DESC ', null, 0, $max_posts);
                         
                         if (!empty($posts)) {
                             
