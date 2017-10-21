@@ -15,10 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Progress block settings
+ * Progress block settings.
  *
  * @package   block_forum_aggregator
- * @copyright 2014 Tõnis Tartes
+ * @copyright 2014 Tonis Tartes
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

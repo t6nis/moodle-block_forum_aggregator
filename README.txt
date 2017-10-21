@@ -1,4 +1,4 @@
-Forum Aggregator by Tõnis Tartes since 2011
+Forum Aggregator by Tonis Tartes since 2011
 
 This works for Moodle 2.x version.
 
@@ -10,6 +10,8 @@ This block is an alternative for Recent News block which is tied to News Forum.
     Can select number of latest posts to be shown(max 25)
 
 This block makes no DB changes!
+//20.10.2017 - Moodle 3.0+ compatiblity. Code cleanup.
+
 //13.05.2014 - If forum tracking is FORCED then unread posts are shown with different background color. 
 Background color can be set in global block config. Thank you Thomas Bantle!
 

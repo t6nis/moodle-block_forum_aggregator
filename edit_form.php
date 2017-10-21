@@ -13,10 +13,14 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-/*
- * @package    block
- * @subpackage forum_aggregator
- * @author     Tõnis Tartes <t6nis20@gmail.com>
+
+defined('MOODLE_INTERNAL') || die();
+
+/**
+ * Edit form.
+ * 
+ * @package    block_forum_aggregator
+ * @author     Tonis Tartes <t6nis20@gmail.com>
  * @copyright  1999 onwards Martin Dougiamas  {@link http://moodle.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -25,10 +29,8 @@ class block_forum_aggregator_edit_form extends block_edit_form {
     
     protected function specific_definition($mform) {
         
-        //block settings title
         $mform->addElement('header', 'configheader', get_string('blocksettings', 'block'));
-        
-        
+
         $mform->addElement('text', 'config_title', get_string('configtitle', 'block_forum_aggregator'));
         $mform->setType('config_title', PARAM_TEXT);
         
@@ -38,7 +40,6 @@ class block_forum_aggregator_edit_form extends block_edit_form {
             
             foreach ($forums as $key => $value) {
 
-                //forum title
                 $mform->addElement('header', 'forum_settings', $value->name);
                 
                 $mform->addElement('advcheckbox', 'config_forum_id['.$value->id.']',  get_string('forum_selection', 'block_forum_aggregator'), '', array('group' => 1), array(0,1));
@@ -53,7 +54,6 @@ class block_forum_aggregator_edit_form extends block_edit_form {
                 
                 $post_array = array();
                 
-                //from 0 to 25
                 for ($i = 0; $i <= 25; $i++) {
                     $post_array[] = $i; 
                 }
@@ -68,7 +68,7 @@ class block_forum_aggregator_edit_form extends block_edit_form {
         
     }
     
-    //get course forums
+    // Get course forums.
     private function get_course_forums() {
         
         global $DB, $CFG, $COURSE, $USER;
@@ -79,7 +79,7 @@ class block_forum_aggregator_edit_form extends block_edit_form {
 
     }
     
-    //get selected forum data by id
+    // Get selected forum data by id.
     private function get_forum_by_id($forumid) {
 
         global $DB, $CFG, $COURSE, $USER;
@@ -90,5 +90,3 @@ class block_forum_aggregator_edit_form extends block_edit_form {
     }
     
 }
-
-?>
