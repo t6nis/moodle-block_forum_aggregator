@@ -10,6 +10,8 @@ This block is an alternative for Recent News block which is tied to News Forum.
     Can select number of latest posts to be shown(max 25)
 
 This block makes no DB changes!
+//23.03.2020 - Changes to some styles.
+
 //20.10.2017 - Moodle 3.0+ compatiblity. Code cleanup.
 
 //13.05.2014 - If forum tracking is FORCED then unread posts are shown with different background color. 

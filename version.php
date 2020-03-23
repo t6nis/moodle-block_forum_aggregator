@@ -25,8 +25,8 @@ defined('MOODLE_INTERNAL') || die();
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$plugin->version = 2017102000;
+$plugin->version = 2020032200;
 $plugin->requires = 2013101800;
 $plugin->component = 'block_forum_aggregator';
 $plugin->maturity  = MATURITY_STABLE;
-$plugin->release   = "2017102000"; // User-friendly version number.
+$plugin->release   = "2020032200"; // User-friendly version number.
