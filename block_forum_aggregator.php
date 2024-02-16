@@ -108,7 +108,8 @@ class block_forum_aggregator extends block_base {
                         $text .= html_writer::start_tag('ul', array('class'=> 'unlist'));
                         $text .= html_writer::tag('li', html_writer::link(new moodle_url('/mod/forum/view.php?id='.$cm->id), $cm->name), array('class' => 'forum_title'));
                         
-                        $allnames = get_all_user_name_fields(true, 'u');
+                        $namefields = \core_user\fields::for_name()->get_required_fields(); 
+                        $allnames = join(',', $namefields);
                         $posts = $DB->get_records_sql('SELECT d.id, p.*, '.$allnames.', u.email, u.picture, u.imagealt
                                             FROM {forum_discussions} d
                                             LEFT JOIN {forum_posts} p ON p.discussion = d.id
